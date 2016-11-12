@@ -1,29 +1,41 @@
-<header>
-  <h1>Todo List ( {{$ctrl.incompleteCount}} )</h1>
+<login-buttons></login-buttons>
+
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>
+        Todo List ({{$ctrl.incompleteCount}})
+      </span>
+    </h2>
+
+    <span flex></span>
+
     <label class="hide-completed">
-       <input type="checkbox" ng-model="$ctrl.hideCompleted"/>
+      <md-checkbox ng-model="$ctrl.hideCompleted"></md-checkbox>
        Hide Completed Tasks
     </label>
+  </div>
+</md-toolbar>
 
-    <login-buttons></login-buttons>
+<form class="new-task" ng-submit="$ctrl.addTask($ctrl.newTask)" ng-show="$ctrl.currentUser">
+  <md-input-container>
+    <label>Task</label>
+    <input type="text" ng-model="$ctrl.newTask" name="task" placeholder="Type to add new tasks">
+  </md-input-container>
+</form>
 
-    <form class="new-task" ng-submit="$ctrl.addTask($ctrl.newTask)" ng-show="$ctrl.currentUser">
-        <input ng-model="$ctrl.newTask" type="text" name="text" placeholder="Type to add new tasks"/>
-    </form>
-</header>
+<md-list>
+  <md-list-item ng-repeat="task in $ctrl.tasks"  ng-class="{'checked': task.checked, 'private': task.private}">
+    <md-checkbox ng-checked="task.checked" ng-click="$ctrl.setChecked(task)" ></md-checkbox>
 
-<ul>
-    <li ng-repeat="task in $ctrl.tasks" ng-class="{'checked': task.checked, 'private': task.private}">
-        <button class="delete" ng-click="$ctrl.removeTask(task)">&times;</button>
+    <span class="flex">
+      <strong>{{task.username || "Unknow"}}</strong> - {{task.text}}
+    </span>
 
-        <input type="checkbox" ng-checked="task.checked" ng-click="$ctrl.setChecked(task)" class="toggle-checked"/>
+    <md-button class="md-primary"  ng-click="$ctrl.setPrivate(task)" ng-show="task.owner === $ctrl.currentUser._id">
+      {{task.private == true ? "Private" : "Public"}}
+    </md-button>
 
-        <span class="text">
-          <strong>{{task.username || "Unknow"}}</strong> - {{task.text}}
-        </span>
-
-        <button class="toggle-private" ng-click="$ctrl.setPrivate(task)" ng-show="task.owner === $ctrl.currentUser._id">
-          {{task.private == true ? "Private" : "Public"}}
-        </button>
-  </li>
-</ul>
+    <button class="delete" ng-click="$ctrl.removeTask(task)">&times;</button>
+  </md-list-item>
+</md-list>

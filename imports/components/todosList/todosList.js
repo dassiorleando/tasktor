@@ -1,10 +1,11 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import ngMaterial from 'angular-material';
 import template from './todosList.html';
 import { Tasks } from '../../api/tasks.js';
 
 class TodosListCtrl {
-  constructor($scope) {
+  constructor($scope, $mdToast) {
     $scope.viewModel(this);
     this.subscribe('tasks');
 
@@ -40,6 +41,20 @@ class TodosListCtrl {
   })
 }
   addTask(newTask) {
+    var last = {
+      bottom: false,
+      top: true,
+      left: false,
+      right: true
+    };
+    if(!newTask){
+      $mdToast.show(
+      $mdToast.simple()
+        .textContent('Simple Toast!')
+        .position(last)
+        .hideDelay(3000)
+      );
+    }
     // Insert a task into the collection
     Meteor.call('tasks.insert', newTask);
     // Clear form
@@ -61,9 +76,10 @@ class TodosListCtrl {
 }
 
 export default angular.module('todosList', [
-  angularMeteor
+  angularMeteor,
+  ngMaterial
 ])
   .component('todosList', {
     templateUrl: 'imports/components/todosList/todosList.html',
-    controller: ['$scope', TodosListCtrl]
+    controller: ['$scope', '$mdToast', TodosListCtrl]
   });
