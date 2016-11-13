@@ -54,7 +54,6 @@ Meteor.methods({
        throw new Meteor.Error('not-authorized');
      }
 
-
     Tasks.update(taskId, {
       $set: {
         checked: setChecked

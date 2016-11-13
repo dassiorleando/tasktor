@@ -17,10 +17,11 @@ The online version **is** or **will be** hosted here: https://tasktor.herokuapp.
   * Make task as public or private
   * Mark task as finish
   * Sort & Filter tasks listing
+* design
+  * Clean material design with Angular-Material
 
 #### On The Way
 
-* Clean material design with Angular-Material
 * Better notification on the top right when an action is finish
 * Associate task to a particular user
 
