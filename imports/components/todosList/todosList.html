@@ -1,22 +1,25 @@
+<!-- Security actions: Sign up, Sign In and change password. -->
 <login-buttons></login-buttons>
 
+<!-- The toolbar within: Security action, count of incompleted Task, hide action of completed -->
 <md-toolbar>
   <div class="md-toolbar-tools">
     <h2>
       <span>
-        Todo List ({{$ctrl.incompleteCount}})
+        Todo List ({{$ctrl.incompleteCount}}) <!-- number of incompleted tasks -->
       </span>
     </h2>
 
-    <span flex></span>
+    <span flex></span>  <!-- Material Design separator: middle -->
 
     <label class="hide-completed">
+      <!-- Hide complemeted task: Action -->
       <md-checkbox ng-model="$ctrl.hideCompleted"></md-checkbox>
        Hide Completed Tasks
     </label>
   </div>
 </md-toolbar>
-
+<!-- Form to enter new Task: just a simple input after just type enter to insert it -->
 <form class="new-task" ng-submit="$ctrl.addTask($ctrl.newTask)" ng-show="$ctrl.currentUser">
   <md-input-container>
     <label>Task</label>
@@ -24,18 +27,22 @@
   </md-input-container>
 </form>
 
+<!-- A beautifull material design list of Tasks with certains actions -->
 <md-list>
   <md-list-item ng-repeat="task in $ctrl.tasks"  ng-class="{'checked': task.checked, 'private': task.private}">
     <md-checkbox ng-checked="task.checked" ng-click="$ctrl.setChecked(task)" ></md-checkbox>
 
+    <!-- We display the username of the owner of the task with the task description -->
     <span class="flex">
-      <strong>{{task.username || "Unknow"}}</strong> - {{task.text}}
+      <strong>{{task.username || ""}}</strong> - {{task.text}}
     </span>
 
+    <!-- The status of the task with the set private action -->
     <md-button class="md-primary"  ng-click="$ctrl.setPrivate(task)" ng-show="task.owner === $ctrl.currentUser._id">
       {{task.private == true ? "Private" : "Public"}}
     </md-button>
 
+    <!-- Action to delete a task -->
     <button class="delete" ng-click="$ctrl.removeTask(task)">&times;</button>
   </md-list-item>
 </md-list>

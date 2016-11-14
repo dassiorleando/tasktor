@@ -1,8 +1,8 @@
 # **TASKTOR**
 A simple task management App build using the famous meteor.
-M
+
 ### Demo
-The online version **is** or **will be** hosted here: https://tasktor.herokuapp.com
+The online version **is**/**will be** hosted here: https://tasktor.herokuapp.com
 
 ### Features
 #### Currently Implemented
@@ -11,10 +11,10 @@ The online version **is** or **will be** hosted here: https://tasktor.herokuapp.
   * Sign In
   * Change password
 * Tasks
-  * Create tasks
+  * Create task
   * Count and print all tasks
   * Delete your own tasks
-  * Make task as public or private
+  * Make your tasks as public/private
   * Mark task as finish
   * Sort & Filter tasks listing
 * design
@@ -24,6 +24,7 @@ The online version **is** or **will be** hosted here: https://tasktor.herokuapp.
 
 * Better notification on the top right when an action is finish
 * Associate task to a particular user
+* Write tests
 
 ### Meteor
 #### Version 1.4.1.3
@@ -43,5 +44,6 @@ Run the project:
 $ cd tasktor
 $ meteor
 ```
-Now with default configuration it is available at: http://localhost:3000
+Now with default configurations it will be available at: [http://localhost:3000](http://localhost:3000)
+
 Enjoy it :)
